@@ -38,11 +38,11 @@ MCO::Direction MCO::GetDirection(RE::NiPoint2 a_vec, bool a_gamepad)
 
 		//Finally, we get the current direction by dividing the angle
 		// by the size of the sectors
-		int direction = (int)std::floor(convertedAngle / sectorSize);
+		Direction direction = (Direction)std::floor(convertedAngle / sectorSize);
 
 		//the result directions map as follows:
-		// 0 = kUp, 1 = kRight, 2 = kDown 3 = kLeft.
-		return (Direction)direction;
+		// 0 = kForward, 1 = kStrafeRight, 2 = kBack 3 = kStrafeLeft.
+		return direction;
 	}
 	logger::debug("kNeutral");
 	return Direction::kNeutral;
@@ -66,11 +66,11 @@ MCO::DirectionOcto MCO::GetDirectionOcto(RE::NiPoint2 a_vec, bool a_gamepad)
 
 		//Finally, we get the current direction by dividing the angle
 		// by the size of the sectors
-		int direction = (int)std::floor(convertedAngle / sectorSize);
+		DirectionOcto direction = (DirectionOcto)std::floor(convertedAngle / sectorSize);
 
 		//the result directions map as follows:
-		// 0 = kUp, 1 = kUpRight, 2 = kRight ... 7 = kUpLeft.
-		return (DirectionOcto)direction;
+		// 0 = kForward, 1 = kForwardRight, 2 = kStrafeRight ... 7 = kForwardLeft.
+		return direction;
 	}
 	logger::debug("kNeutral");
 	return DirectionOcto::kNeutral;

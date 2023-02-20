@@ -15,22 +15,22 @@ public:
 	}
 
 	enum class Direction {
-		kUp,
-		kRight,
-		kDown,
-		kLeft,
+		kForward,
+		kStrafeRight,
+		kBack,
+		kStrafeLeft,
 		kNeutral
 	};
 
 	enum class DirectionOcto {
-		kUp,
-		kUpRight,
-		kRight,
-		kDownRight,
-		kDown,
-		kDownLeft,
-		kLeft,
-		kUpLeft,
+		kForward,
+		kForwardRight,
+		kStrafeRight,
+		kBackRight,
+		kBack,
+		kBackLeft,
+		kStrafeLeft,
+		kForwardLeft,
 		kNeutral
 	};
 
