@@ -48,7 +48,6 @@ MCO::Direction MCO::GetDirection(RE::NiPoint2 a_vec, bool a_gamepad)
 	return Direction::kNeutral;
 }
 
-// https://github.com/ersh1/DodgeFramework/blob/master/src/Events.cpp
 MCO::DirectionOcto MCO::GetDirectionOcto(RE::NiPoint2 a_vec, bool a_gamepad)
 {
 	if (a_vec.Length() > (a_gamepad ? 0.25f : 0.0f)) {
