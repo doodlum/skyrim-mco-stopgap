@@ -15,14 +15,15 @@ public:
 	}
 
 	enum class Direction {
+		kNeutral = 0,
 		kForward,
 		kStrafeRight,
 		kBack,
 		kStrafeLeft,
-		kNeutral
 	};
 
 	enum class DirectionOcto {
+		kNeutral = 0,
 		kForward,
 		kForwardRight,
 		kStrafeRight,
@@ -30,12 +31,12 @@ public:
 		kBack,
 		kBackLeft,
 		kStrafeLeft,
-		kForwardLeft,
-		kNeutral
+		kForwardLeft
 	};
 
 	Direction GetDirection(RE::NiPoint2 a_vec, bool a_gamepad);
 	DirectionOcto GetDirectionOcto(RE::NiPoint2 a_vec, bool a_gamepad);
+
 	void ProcessMovement(RE::PlayerControlsData* a_data, bool a_gamepad);
 
 	struct Hooks

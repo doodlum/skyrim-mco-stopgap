@@ -38,7 +38,7 @@ MCO::Direction MCO::GetDirection(RE::NiPoint2 a_vec, bool a_gamepad)
 
 		//Finally, we get the current direction by dividing the angle
 		// by the size of the sectors
-		Direction direction = (Direction)std::floor(convertedAngle / sectorSize);
+		Direction direction = (Direction)(std::floor(convertedAngle / sectorSize) + 1);
 
 		//the result directions map as follows:
 		// 0 = kForward, 1 = kStrafeRight, 2 = kBack 3 = kStrafeLeft.
@@ -65,7 +65,7 @@ MCO::DirectionOcto MCO::GetDirectionOcto(RE::NiPoint2 a_vec, bool a_gamepad)
 
 		//Finally, we get the current direction by dividing the angle
 		// by the size of the sectors
-		DirectionOcto direction = (DirectionOcto)std::floor(convertedAngle / sectorSize);
+		DirectionOcto direction = (DirectionOcto)(std::floor(convertedAngle / sectorSize) + 1);
 
 		//the result directions map as follows:
 		// 0 = kForward, 1 = kForwardRight, 2 = kStrafeRight ... 7 = kForwardLeft.
@@ -82,7 +82,7 @@ void MCO::ProcessMovement(RE::PlayerControlsData* a_data, bool a_gamepad)
 		bool MCO_IsInRecovery = false;
 		if (player->GetGraphVariableBool("MCO_IsInRecovery", MCO_IsInRecovery) && MCO_IsInRecovery)
 		{
-			if (GetDirectionOcto(a_data->prevMoveVec, a_gamepad) != GetDirectionOcto(a_data->moveInputVec, a_gamepad))
+			if (GetDirectionOcto(a_data->moveInputVec, a_gamepad) != DirectionOcto::kNeutral)
 			{
 				logger::debug("MCO_EndAnimation");
 				player->NotifyAnimationGraph("MCO_EndAnimation");
