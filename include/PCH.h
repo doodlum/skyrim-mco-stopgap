@@ -10,7 +10,6 @@
 #	define SKSEPlugin_Query F4SEPlugin_Query
 #	define RUNTIME RUNTIME_1_10_163
 #else
-#undef ENABLE_SKYRIM_VR
 #	include "RE/Skyrim.h"
 #	include "SKSE/SKSE.h"
 #endif
