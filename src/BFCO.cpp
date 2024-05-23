@@ -1,4 +1,4 @@
-#include "MCO.h"
+#include "BFCO.h"
 
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -21,7 +21,7 @@ double GetAngle(RE::NiPoint2 a_vec)
 	return angleInDegrees;
 }
 
-MCO::Direction MCO::GetDirection(RE::NiPoint2 a_vec, bool a_gamepad)
+BFCO::Direction BFCO::GetDirection(RE::NiPoint2 a_vec, bool a_gamepad)
 {
 	if (a_vec.Length() > (a_gamepad ? 0.25f : 0.0f)) {
 		//We have 4 sectors, so get the size of each in degrees.
@@ -48,7 +48,7 @@ MCO::Direction MCO::GetDirection(RE::NiPoint2 a_vec, bool a_gamepad)
 	return Direction::kNeutral;
 }
 
-MCO::DirectionOcto MCO::GetDirectionOcto(RE::NiPoint2 a_vec, bool a_gamepad)
+BFCO::DirectionOcto BFCO::GetDirectionOcto(RE::NiPoint2 a_vec, bool a_gamepad)
 {
 	if (a_vec.Length() > (a_gamepad ? 0.25f : 0.0f)) {
 		//We have 8 sectors, so get the size of each in degrees.
@@ -75,18 +75,14 @@ MCO::DirectionOcto MCO::GetDirectionOcto(RE::NiPoint2 a_vec, bool a_gamepad)
 	return DirectionOcto::kNeutral;
 }
 
-void MCO::ProcessMovement(RE::PlayerControlsData* a_data, bool a_gamepad)
+void BFCO::ProcessMovement(RE::PlayerControlsData* a_data, bool a_gamepad)
 {
 	if (auto player = RE::PlayerCharacter::GetSingleton())
 	{
-		bool MCO_IsInRecovery = false;
-		if (player->GetGraphVariableBool("MCO_IsInRecovery", MCO_IsInRecovery) && MCO_IsInRecovery)
+		if (GetDirectionOcto(a_data->moveInputVec, a_gamepad) != DirectionOcto::kNeutral)
 		{
-			if (GetDirectionOcto(a_data->moveInputVec, a_gamepad) != DirectionOcto::kNeutral)
-			{
-				logger::debug("MCO_EndAnimation");
-				player->NotifyAnimationGraph("MCO_EndAnimation");
-			}
-		}
+			logger::debug("BFCO_MoveStart");
+			player->NotifyAnimationGraph("BFCO_MoveStart");
+		}	
 	}
 }

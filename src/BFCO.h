@@ -1,11 +1,11 @@
 #pragma once
 
-class MCO
+class BFCO
 {
 public:
-	static MCO* GetSingleton()
+	static BFCO* GetSingleton()
 	{
-		static MCO singleton;
+		static BFCO singleton;
 		return &singleton;
 	}
 
@@ -68,15 +68,15 @@ public:
 		}
 	};
 private:
-	MCO()
+	BFCO()
 	{
 	}
 
-	MCO(const MCO&) = delete;
-	MCO(MCO&&) = delete;
+	BFCO(const BFCO&) = delete;
+	BFCO(BFCO&&) = delete;
 
-	~MCO() = default;
+	~BFCO() = default;
 
-	MCO& operator=(const MCO&) = delete;
-	MCO& operator=(MCO&&) = delete;
+	BFCO& operator=(const BFCO&) = delete;
+	BFCO& operator=(BFCO&&) = delete;
 };

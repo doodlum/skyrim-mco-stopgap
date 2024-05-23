@@ -1,6 +1,7 @@
-#include "MCO.h"
+#include "BFCO.h"
 
-void Load()
+bool Load()
 {
-	MCO::InstallHooks();
+	BFCO::InstallHooks();
+	return true;
 }
