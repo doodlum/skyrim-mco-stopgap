@@ -31,7 +31,11 @@ public:
 
 		static void Install()
 		{
-			stl::write_vfunc<0x4, AttackBlockHandler_ProcessButton>(RE::VTABLE_AttackBlockHandler[0]);
+			if (REL::Module::get().version() >= SKSE::RUNTIME_SSE_1_7_99) {
+				stl::write_vfunc<0x6, AttackBlockHandler_ProcessButton>(RE::VTABLE_AttackBlockHandler[0]);
+			} else {
+				stl::write_vfunc<0x4, AttackBlockHandler_ProcessButton>(RE::VTABLE_AttackBlockHandler[0]);
+			}
 		}
 	};
 private:
