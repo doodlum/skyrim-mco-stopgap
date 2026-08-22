@@ -63,8 +63,13 @@ public:
 
 		static void Install()
 		{
-			stl::write_vfunc<0x2, MovementHandler_ProcessThumbstick>(RE::VTABLE_MovementHandler[0]);
-			stl::write_vfunc<0x4, MovementHandler_ProcessButton>(RE::VTABLE_MovementHandler[0]);
+			if (REL::Module::get().version() >= SKSE::RUNTIME_SSE_1_7_99) {
+				stl::write_vfunc<0x4, MovementHandler_ProcessThumbstick>(RE::VTABLE_MovementHandler[0]);
+				stl::write_vfunc<0x6, MovementHandler_ProcessButton>(RE::VTABLE_MovementHandler[0]);
+			} else {
+				stl::write_vfunc<0x2, MovementHandler_ProcessThumbstick>(RE::VTABLE_MovementHandler[0]);
+				stl::write_vfunc<0x4, MovementHandler_ProcessButton>(RE::VTABLE_MovementHandler[0]);
+			}
 		}
 	};
 private:
